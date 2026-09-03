@@ -1,8 +1,9 @@
+NAME = megaphone
+
 CXX = c++
 INCLUDE = -I includes
 FLAGS = -Wall -Wextra -Werror -std=c++98 $(INCLUDE)
 
-NAME = megaphone
 
 SRC = megaphone.cpp
 
