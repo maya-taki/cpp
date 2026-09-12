@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 16:13:37 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/09/03 20:44:09 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/09/11 19:50:00 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,36 @@ std::string get_field(std::string field_name)
 
 void	get_contact_index(PhoneBook &phonebook)
 {
+	int i = 0;
 
+	do
+	{
+		std::cout << "Enter contact index to view more: ";
+		std::cin >> i;
+		if (std::cin.eof())
+			return ;
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << "Not a number" << std::endl;
+		}
+		else
+		{
+			std::cin.ignore();
+			try
+			{
+				phonebook.search_contacts(i);
+				break;
+			}
+			catch (std::runtime_error &e)
+			{
+				std::cout << "Error: " << e.what()  << std::endl;
+			}
+		}
+	}
+	while (true);
 }
-
-//void	welcomeTitle() {
-//	std::cout << "=================================" << std::endl;
-//	std::cout << "Welcome to the AWESOME phonebook!" << std::endl;
-//	std::cout << "=================================" << std::endl;
-//	std::cout << "Please type the desired outputs:" << std::endl;
-//	std::cout << "ADD:	save a new contact" << std::endl;
-//	std::cout << "SEARCH:	display a specific contact" << std::endl;
-//	std::cout << "EXIT:	quit the program" << std::endl;
-//	std::cout << "=================================" << std::endl;
-//}
-
-
 
 int	main()
 {
@@ -79,15 +94,11 @@ int	main()
 				std::cout << "No contacts saved" << std::endl;
 			}
 			else
+			{
 				phonebook.show_contacts();
 				get_contact_index(phonebook);
+			}
 		}
 	} while (command != "EXIT");
-	//else
-	//{
-	//	std::cout << "too many args" << std::endl;
-	//	return (1);
-	//}
-	//welcomeTitle();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 16:13:33 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/09/03 20:06:27 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/09/11 20:44:49 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	PhoneBook::show_contacts()
 		<< "|"
 		<< std::setw(w) << " Nickname "
 		<< "|"
+		<< std::setw(w) << " Phone Number "
+		<< "|"
 		<< std::endl;
 	std::cout << separator << std::endl;
 	for (int i = 0; i < contact_count; i++)
@@ -63,15 +65,23 @@ void	PhoneBook::show_contacts()
 			<< "|"
 			<< std::setw(w) << truncate(contacts[i].get_nickname(), w)
 			<< "|"
+			<< std::setw(w) << truncate(contacts[i].get_phone_number(), w)
+			<< "|"
 			<< std::endl;
 	}
 }
 
-//void	PhoneBook::search_contacts(int index)
-//{
-	
-//}
-//int		PhoneBook::get_contact_count()
-//{
-
-//}
+void	PhoneBook::search_contacts(int index)
+{
+	if (index < 0 || index >= contact_count)
+		throw std::runtime_error("Index not valid");
+	std::cout << "First name: " << contacts[index].get_first_name() << std::endl;
+	std::cout << "Last name: " << contacts[index].get_last_name() << std::endl;
+	std::cout << "Nickname: " << contacts[index].get_nickname() << std::endl;
+	std::cout << "Phone number: " << contacts[index].get_phone_number() << std::endl;
+	std::cout << "Darkest secret: " << contacts[index].get_secret() << std::endl;
+}
+int		PhoneBook::get_contact_count()
+{
+	return (this->contact_count);
+}
