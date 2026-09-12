@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 16:13:40 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/09/03 19:34:44 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/09/12 17:52:38 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <iostream>
 #include <iomanip>
 #include <stdexcept>
+#include <limits>
 
 class Contact
 {

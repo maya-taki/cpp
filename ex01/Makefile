@@ -18,7 +18,7 @@ $(NAME) : $(OBJ)
 $(OBJDIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
 	@$(CXX) $(FLAGS) -c $< -o $@
-#	@$(call show_progress, $<)
+	@$(call show_progress, $<)
 
 all : $(NAME)
 
@@ -29,3 +29,5 @@ fclean: clean
 	@rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: fclean clean re all

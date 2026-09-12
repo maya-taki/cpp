@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 16:13:42 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/09/03 19:34:38 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/09/12 17:20:05 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void Contact::set_nickname(std::string name){
 }
 
 void Contact::set_phone_number(std::string name){
-	this->_secret = name;
+	this->_phone_number = name;
 }
 
 void Contact::set_secret(std::string name){
@@ -48,7 +48,7 @@ std::string Contact::get_nickname(void){
 }
 
 std::string Contact::get_phone_number(void){
-	return (this->_secret);
+	return (this->_phone_number);
 }
 
 std::string Contact::get_secret(void){

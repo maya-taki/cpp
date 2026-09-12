@@ -6,12 +6,13 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 16:13:37 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/09/11 19:50:00 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/09/12 17:59:20 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include <sstream>
 
 std::string get_field(std::string field_name)
 {
@@ -32,23 +33,23 @@ std::string get_field(std::string field_name)
 
 void	get_contact_index(PhoneBook &phonebook)
 {
-	int i = 0;
+	int			i = 0;
+	std::string	input;
 
 	do
 	{
 		std::cout << "Enter contact index to view more: ";
-		std::cin >> i;
+		std::getline(std::cin, input);
 		if (std::cin.eof())
 			return ;
-		if (std::cin.fail())
+		std::stringstream stream(input);
+		char extra;
+		if (!(stream >> i) || (stream >> extra))
 		{
-			std::cin.clear();
-			std::cin.ignore();
 			std::cout << "Not a number" << std::endl;
 		}
 		else
 		{
-			std::cin.ignore();
 			try
 			{
 				phonebook.search_contacts(i);
@@ -76,6 +77,8 @@ int	main()
 		std::getline(std::cin, command);
 		if (std::cin.eof())
 			return (0);
+		if (command.empty())
+			std::cout << "Type something!" << std::endl;
 		if (command == "ADD")
 		{
 			std::cout << "Adding new contact" << std::endl;

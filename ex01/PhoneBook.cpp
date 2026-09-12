@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 16:13:33 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/09/11 20:44:49 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/09/12 17:34:29 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,21 @@ std::string	PhoneBook::truncate(const std::string &str, int width)
 void	PhoneBook::show_contacts()
 {
 	int			w = 10;
-	std::string	separator(43, '-');
+	std::string	separator(70, '-');
 
 	std::cout << separator << std::endl;
 	std::cout << std::right
-		<< std::setw(w) << "Index "
+		<< std::setw(w) << "Index"
 		<< "|"
-		<< std::setw(w) << " First name "
+		<< std::setw(w) << "First name"
 		<< "|"
-		<< std::setw(w) << " Last name "
+		<< std::setw(w) << "Last name"
 		<< "|"
-		<< std::setw(w) << " Nickname "
+		<< std::setw(w) << "Nickname"
 		<< "|"
-		<< std::setw(w) << " Phone Number "
+		<< std::setw(w) << "Phone"
+		<< "|"
+		<< std::setw(w) << "Secret"
 		<< "|"
 		<< std::endl;
 	std::cout << separator << std::endl;
@@ -67,6 +69,8 @@ void	PhoneBook::show_contacts()
 			<< "|"
 			<< std::setw(w) << truncate(contacts[i].get_phone_number(), w)
 			<< "|"
+			<< std::setw(w) << truncate(contacts[i].get_secret(), w)
+			<< "|"
 			<< std::endl;
 	}
 }
@@ -79,7 +83,7 @@ void	PhoneBook::search_contacts(int index)
 	std::cout << "Last name: " << contacts[index].get_last_name() << std::endl;
 	std::cout << "Nickname: " << contacts[index].get_nickname() << std::endl;
 	std::cout << "Phone number: " << contacts[index].get_phone_number() << std::endl;
-	std::cout << "Darkest secret: " << contacts[index].get_secret() << std::endl;
+	std::cout << "Secret: " << contacts[index].get_secret() << std::endl;
 }
 int		PhoneBook::get_contact_count()
 {
