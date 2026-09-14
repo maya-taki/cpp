@@ -1,0 +1,18 @@
+# Build artifacts
+*.o
+*.a
+*.d
+
+# Binaries
+
+
+# Editor / IDE
+.vscode
+.idea
+*.swp
+
+# OS
+.DS_Store
+
+# Personal notes
+*.pdf
