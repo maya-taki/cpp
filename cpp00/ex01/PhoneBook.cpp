@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 16:13:33 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/09/12 17:34:29 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/09/14 14:12:53 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ PhoneBook::~PhoneBook() {}
 
 void	PhoneBook::add_contact(const Contact &contact)
 {
+	std::cout << "Contact saved" << std::endl;
 	contacts[old_index] = contact;
 	old_index = (old_index + 1) % 8;
 	if (contact_count < 8)

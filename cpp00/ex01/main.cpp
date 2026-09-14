@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/03 16:13:37 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/09/12 17:59:20 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/09/14 14:12:51 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main()
 			return (0);
 		if (command.empty())
 			std::cout << "Type something!" << std::endl;
-		if (command == "ADD")
+		else if (command == "ADD")
 		{
 			std::cout << "Adding new contact" << std::endl;
 			Contact new_contact = Contact();
@@ -102,6 +102,8 @@ int	main()
 				get_contact_index(phonebook);
 			}
 		}
+		else
+			std::cout << "Invalid command: ADD, SEARCH or EXIT" << std::endl;
 	} while (command != "EXIT");
 	return (0);
 }
