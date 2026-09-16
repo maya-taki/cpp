@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 01:51:25 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/09/16 04:54:13 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/09/16 11:19:16 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Fixed& Fixed::operator=(const Fixed& src)
 {
 	std::cout << "copy assignment operator called" << std::endl;
 	if (this != &src)
-		fixed_ = src.fixed_;
+		SetRawBits(src.GetRawBits());
 	return (*this);
 }
 
@@ -97,14 +97,14 @@ Fixed Fixed::operator--(int)
 Fixed Fixed::operator+(const Fixed& rhs) const
 {
 	Fixed add;
-	add.SetRawBits(fixed_ + rhs.fixed_);
+	add.SetRawBits(fixed_ + rhs.GetRawBits());
 	return (add);
 }
 
 Fixed Fixed::operator-(const Fixed& rhs) const
 {
 	Fixed sub;
-	sub.SetRawBits(fixed_ - rhs.fixed_);
+	sub.SetRawBits(fixed_ - rhs.GetRawBits());
 	return (sub);
 }
 
@@ -118,38 +118,38 @@ Fixed Fixed::operator*(const Fixed& rhs) const
 Fixed Fixed::operator/(const Fixed& rhs) const
 {
 	Fixed div;
-	div.SetRawBits((fixed_ << bits) / rhs.fixed_);
+	div.SetRawBits((fixed_ << bits) / rhs.GetRawBits());
 	return (div);
 }
 
 bool Fixed::operator>(const Fixed& rhs) const
 {
-	return (fixed_ > rhs.fixed_);
+	return (fixed_ > rhs.GetRawBits());
 }
 
 bool Fixed::operator<(const Fixed& rhs) const
 {
-	return (fixed_ < rhs.fixed_);
+	return (fixed_ < rhs.GetRawBits());
 }
 
 bool Fixed::operator>=(const Fixed& rhs) const
 {
-	return (fixed_ >= rhs.fixed_);
+	return (fixed_ >= rhs.GetRawBits());
 }
 
 bool Fixed::operator<=(const Fixed& rhs) const
 {
-	return (fixed_ <= rhs.fixed_);
+	return (fixed_ <= rhs.GetRawBits());
 }
 
 bool Fixed::operator==(const Fixed& rhs) const
 {
-	return (fixed_ == rhs.fixed_);
+	return (fixed_ == rhs.GetRawBits());
 }
 
 bool Fixed::operator!=(const Fixed& rhs) const
 {
-	return (fixed_ != rhs.fixed_);
+	return (fixed_ != rhs.GetRawBits());
 }
 
 Fixed& Fixed::min(Fixed& a, Fixed& b)
