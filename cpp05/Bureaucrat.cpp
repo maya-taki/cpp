@@ -14,6 +14,8 @@
 
 Bureaucrat::Bureaucrat() {};
 
+Bureaucrat::Bureaucrat() {};
 
+Bureaucrat::Bureaucrat &operator=() {};
 
 ~Bureaucrat::Bureaucrat() {};
