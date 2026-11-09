@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 22:29:51 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/05 00:14:12 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/09 00:31:25 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+# include <exception>
 
 //abstraction == hiding unnecessary data from outside a class
 //getter == function that makes a private attribute READABLE
@@ -22,39 +23,41 @@
 
 class Bureaucrat{
 	public:
-		int					_grade;
-		const std::string	_name;
-
-		const std::string	&getName();
-		int					getGrade();
-		void				incrementGrade();
-		void				decrementGrade();
-
-		class GradeTooHigh: public std::exception
-		{
-			public:
-				GradeTooHigh(const std::string &message): _message(message) {};
-				~GradeTooHigh() {};	//throw() {}
-			private:
-				std::string	_message = "Grade too high!";
-		}
-		class GradeTooLow: public std::exception
-		{
-			public:
-				GradeTooLow(const std::string &message): 	_message(message) {};
-				~GradeTooLow() {}; //throw() {}
-			private:
-				std::string	_message = "Grade too low!";
-		}
-
-	private:
 		Bureaucrat();										// default constructor
 		Bureaucrat(const std::string &name, int grade);		// converting constructor
 		Bureaucrat(const Bureaucrat &a);					// copy constructor
 		Bureaucrat &operator=(const Bureaucrat &a);			// copy assignment
 		~Bureaucrat();										//destructor
-}
 
-std::ostream	&operator<<(std::ostream &a, const Bureaucrat &a);
+		const std::string	getName() const;
+		int					getGrade() const;
+		void				incrementGrade();
+		void				decrementGrade();
+
+		class GradeTooHighException: public std::exception
+		{
+			public:
+				GradeTooHighException(const std::string &message): _message(message) {}
+				virtual ~GradeTooHighException() throw() {}
+				virtual const char *what() const throw() { return (_message.c_str()); }
+			private:
+				std::string	_message;
+		};
+		class GradeTooLowException: public std::exception
+		{
+			public:
+				GradeTooLowException(const std::string &message): _message(message) {}
+				virtual ~GradeTooLowException() throw() {}
+				virtual const char *what() const throw() { return (_message.c_str()); }
+			private:
+				std::string	_message;
+		};
+
+	private:
+		const std::string	_name;
+		int					_grade;
+};
+
+std::ostream	&operator<<(std::ostream &a, const Bureaucrat &b);
 
 #endif
