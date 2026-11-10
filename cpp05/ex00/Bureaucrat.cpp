@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 22:29:48 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/09 00:35:13 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/09 17:10:21 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void Bureaucrat::incrementGrade()
 {
 	if (_grade <= 1)
 		throw GradeTooHighException("Grade too high!");
+	else
+		std::cout << "==== Grade updated ====" << std::endl;
 	--_grade;
 }
 
@@ -58,6 +60,8 @@ void Bureaucrat::decrementGrade()
 {
 	if (_grade >= 150)
 		throw GradeTooLowException("Grade too low!");
+	else
+		std::cout << "==== Grade updated ====" << std::endl;
 	++_grade;
 }
 
