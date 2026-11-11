@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 22:29:51 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/09 21:20:59 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/10 21:47:17 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <string>
 # include <iostream>
 # include <exception>
-# include "Form.hpp"
+
+class Form;
 
 //abstraction == hiding unnecessary data from outside a class
 //getter == function that makes a private attribute READABLE

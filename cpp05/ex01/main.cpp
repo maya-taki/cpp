@@ -6,12 +6,13 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 16:34:38 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/09 18:04:09 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/10 23:55:14 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <ostream>
 
 
@@ -19,43 +20,19 @@ int	main(void)
 {
 	try
 	{
-		Bureaucrat a("Bob", 149);
-		std::cout << a << std::endl;
-		a.decrementGrade();
-		std::cout << a << std::endl;
-		a.decrementGrade();
-		std::cout << a << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Error: " << e.what() << std::endl;
-	}
-	std::cout << "==============================" << std::endl;
-	try
-	{
-		Bureaucrat b("Emily", 2);
-		std::cout << b << std::endl;
-		b.incrementGrade();
-		std::cout << b << std::endl;
-		b.incrementGrade();
-		std::cout << b << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Error: " << e.what() << std::endl;
-	}
-	std::cout << "==============================" << std::endl;
-	try
-	{
-		Bureaucrat c("Calisto", 25);
-		std::cout << c << std::endl;
-		while (c.getGrade() != 10)
+		Form	voxotron("Voxotron", 10, 5);
+		Form	ninjaReport("Ninja Report", 5, 10);
+		Bureaucrat d("Dora", 5);
+		d.signForm(ninjaReport);
+		std::cout << d << std::endl;
+		while (d.getGrade() != 10)
 		{
-			c.incrementGrade();
+			d.decrementGrade();
 		}
-		std::cout << c << std::endl;
+		std::cout << d << std::endl;
+		d.signForm(ninjaReport);
+		d.signForm(voxotron);
 	}
-
 	catch (std::exception &e)
 	{
 		std::cout << "Error: " << e.what() << std::endl;

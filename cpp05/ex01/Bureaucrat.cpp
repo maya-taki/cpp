@@ -6,11 +6,12 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 22:29:48 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/09 17:10:21 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/10 23:31:24 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(): _name("None"), _grade(150) {}
 
@@ -51,8 +52,7 @@ void Bureaucrat::incrementGrade()
 {
 	if (_grade <= 1)
 		throw GradeTooHighException("Grade too high!");
-	else
-		std::cout << "==== Grade updated ====" << std::endl;
+	std::cout << "==== Grade updated ====" << std::endl;
 	--_grade;
 }
 
@@ -60,9 +60,22 @@ void Bureaucrat::decrementGrade()
 {
 	if (_grade >= 150)
 		throw GradeTooLowException("Grade too low!");
-	else
-		std::cout << "==== Grade updated ====" << std::endl;
+	std::cout << "==== Grade updated ====" << std::endl;
 	++_grade;
+}
+
+void Bureaucrat::signForm(const Form &form)
+{
+	try
+	{
+		const_cast<Form &>(form).beSigned(*this);
+		std::cout << this->getName() << " signed " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->getName() << " couldn't sign " << form.getName()
+			<< " because" << e.what() << std::endl;
+	}
 }
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat)

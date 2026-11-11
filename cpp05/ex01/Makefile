@@ -6,7 +6,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98 $(INCLUDE)
 
 
 SRC =	Bureaucrat.cpp \
-		
+		Form.cpp \
 		main.cpp
 
 OBJDIR = obj
