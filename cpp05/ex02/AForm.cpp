@@ -85,9 +85,10 @@ const char* AForm::NotSignedException::what() const throw() {
 
 std::ostream &operator<<(std::ostream &out, const AForm &AForm)
 {
-	out << AForm.getName() << ", AForm signed: "
-		<< (AForm.getSigned() ? "yes" : "no")
-		<< ", sign grade " << AForm.getGradeToSign()
-		<< ", exec grade " << AForm.getGradeToExec() << ".";
+	out << "[" << AForm.getName() << "]" << "\n" <<
+	"  ↳ AForm signed? " << (AForm.getSigned() ? "Yes" : "No") << "\n" <<
+	"  ↳ Sign grade:   " << AForm.getGradeToSign() << "\n"
+	"  ↳ Exec grade:   " << AForm.getGradeToExec() << "\n"
+	"=========================================";
 	return (out);
 }

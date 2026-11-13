@@ -26,7 +26,8 @@ $(OBJDIR)/%.o: %.cpp
 all : $(NAME)
 
 clean:
-	@rm -rf $(OBJ)
+	@rm -rf _shrubbery 
+	@rm -rf $(OBJ) 
 
 fclean: clean
 	@rm -rf $(NAME)

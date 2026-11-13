@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 18:50:43 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/13 01:12:50 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/13 16:09:06 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 RobotomyRequestForm::RobotomyRequestForm(): AForm(" Robotomy Request Form", 72, 45), _target("Unknown") {}
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string &target): AForm(target + "Robotomy Request Form", 72, 45), _target(target) {}
+RobotomyRequestForm::RobotomyRequestForm(const std::string &target): AForm(target + " Robotomy Request Form", 72, 45), _target(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other): AForm(other), _target(other._target)
 {
@@ -48,14 +48,19 @@ void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
 		std::string error_msg = executor.getName() + " couldn't execute the form " + this->getName() + " because the grade is too low.";
 		throw AForm::GradeTooLowException();
 	}
-	std::cout << "*BZZZZZZZ* *BZZBZZZZ*" << std::endl;
-	std::cout << "*DDDRRRRRRRRR*" << std::endl;
-	if (std::rand() % 2)
+	else if (!this->getSigned())
+	{
+		throw (AForm::NotSignedException());
+	}
+	std::cout << "*⚡BZZZZZ⚡ ⚡BZZZZ⚡" << std::endl;
+	if ((rand() % 2) != 0)
+	{
 		std::cout << this->_target + " has been robotomized!" << std::endl;
+	}
 	else
+	{
 		std::cout << "Robotomy has failed" << std::endl;
-	
-	std::cout << executor.getName() << " executed " << this->getName() << std::endl;
+	}
 }
 
 std::ostream &operator<<(std::ostream &out, const RobotomyRequestForm &form)
