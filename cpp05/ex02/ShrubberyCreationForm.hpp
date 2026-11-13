@@ -6,13 +6,14 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:39:41 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/12 08:00:44 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/12 23:23:37 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
+# include <fstream>
 # include "AForm.hpp"
 
 class ShrubberyCreationForm: public AForm
@@ -24,12 +25,10 @@ class ShrubberyCreationForm: public AForm
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 		~ShrubberyCreationForm();
 		
-		void				execute(const Bureaucrat &executor);
+		void				execute(const Bureaucrat &executor) const;
 		const std::string	&getTarget() const;
 	private:
-		const std::string	_target;
+		std::string	_target;
 };
-
-std::ostream &operator<<(std::ostream &out, const ShrubberyCreationForm &);
 
 #endif

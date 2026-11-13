@@ -19,13 +19,13 @@ AForm::AForm(const std::string &name, const int sign_grade, const int exec_grade
 	_name(name), _is_signed(false), _sign_grade(sign_grade), _exec_grade(exec_grade)
 {
 	if (sign_grade > 150)
-		throw GradeTooLowException("Out of Range. Grade too low");
+		throw GradeTooLowException();
 	else if (sign_grade < 1)
-		throw GradeTooHighException("Out of Range. Grade too high");
+		throw GradeTooHighException();
 	if (exec_grade > 150)
-		throw GradeTooLowException("Out of Range. Grade too low");
+		throw GradeTooLowException();
 	else if (exec_grade < 1)
-		throw GradeTooHighException("Out of Range. Grade too high");
+		throw GradeTooHighException();
 }
 
 AForm::AForm(const AForm &other): _name(other._name), _is_signed(other._is_signed), _sign_grade(other._sign_grade), _exec_grade(other._exec_grade)
@@ -66,10 +66,21 @@ void				AForm::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() > this->_sign_grade)
 	{
-		std::string error_msg = " grade is too low.";
-		throw AForm::GradeTooLowException(error_msg);
+		throw GradeTooLowException();
 	}
 	this->_is_signed = true;
+}
+
+const char* AForm::GradeTooHighException::what() const throw() {
+    return (" form grade is too high!");
+}
+
+const char* AForm::GradeTooLowException::what() const throw() {
+    return (" form grade is too low!");
+}
+
+const char* AForm::NotSignedException::what() const throw() {
+    return (" form is not signed!");
 }
 
 std::ostream &operator<<(std::ostream &out, const AForm &AForm)

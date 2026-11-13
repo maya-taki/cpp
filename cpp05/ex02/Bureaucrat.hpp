@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 22:29:51 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/11 17:31:23 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/12 23:50:14 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,12 @@ class Bureaucrat{
 		class GradeTooHighException: public std::exception
 		{
 			public:
-				GradeTooHighException(const std::string &message): _message(message) {}
-				virtual ~GradeTooHighException() throw() {}
-				virtual const char *what() const throw() { return (_message.c_str()); }
-			private:
-				std::string	_message;
+				const char *what () const throw();
 		};
 		class GradeTooLowException: public std::exception
 		{
 			public:
-				GradeTooLowException(const std::string &message): _message(message) {}
-				virtual ~GradeTooLowException() throw() {}
-				virtual const char *what() const throw() { return (_message.c_str()); }
-			private:
-				std::string	_message;
+				const char *what () const throw();
 		};
 
 	private:

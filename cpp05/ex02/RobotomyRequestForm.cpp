@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 18:50:43 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/12 07:59:50 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/13 01:12:50 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 #include <string>
 #include <cstdlib>
 
-RobotomyRequestForm::RobotomyRequestForm(): AForm("None", 72, 45), _target("Unknown") {}
+RobotomyRequestForm::RobotomyRequestForm(): AForm(" Robotomy Request Form", 72, 45), _target("Unknown") {}
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string &target): AForm("Robotomy Request Form", 72, 45), _target(target) {}
+RobotomyRequestForm::RobotomyRequestForm(const std::string &target): AForm(target + "Robotomy Request Form", 72, 45), _target(target) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other): AForm("Robotomy Request Form", 72, 45), _target(other._target)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other): AForm(other), _target(other._target)
 {
 	*this = other;
 }
@@ -30,7 +30,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other): AFor
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 {
 	if (this != &other)
-		return (*this);
+		AForm::operator=(other);
 	return (*this);
 }
 
@@ -46,7 +46,7 @@ void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
 	if (executor.getGrade() > this->getGradeToExec())
 	{
 		std::string error_msg = executor.getName() + " couldn't execute the form " + this->getName() + " because the grade is too low.";
-		throw AForm::GradeTooLowException(error_msg);
+		throw AForm::GradeTooLowException();
 	}
 	std::cout << "*BZZZZZZZ* *BZZBZZZZ*" << std::endl;
 	std::cout << "*DDDRRRRRRRRR*" << std::endl;

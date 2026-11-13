@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 17:33:47 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/11 18:50:02 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/12 20:58:40 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ class PresidentialPardonForm: public AForm
 		const std::string	&getTarget() const;
 	
 	private:
-		const std::string	_target;
+		std::string	_target;
 };
-
-std::ostream &operator<<(std::ostream &out, const PresidentialPardonForm &);
 
 #endif

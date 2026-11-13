@@ -7,6 +7,9 @@ FLAGS = -Wall -Wextra -Werror -fsanitize=address -std=c++98 $(INCLUDE)
 
 SRC =	Bureaucrat.cpp \
 		AForm.cpp \
+		ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp \
 		main.cpp
 
 OBJDIR = obj
