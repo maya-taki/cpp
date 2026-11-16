@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 17:27:24 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/15 15:10:39 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/15 21:05:49 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <iostream>
 #include <ostream>
 #include <string>
-
 
 PresidentialPardonForm::PresidentialPardonForm(): AForm(" Presidential Pardon Form", 25, 5), _target("Unknown") {};
 
