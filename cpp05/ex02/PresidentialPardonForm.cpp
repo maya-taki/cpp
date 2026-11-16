@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 17:27:24 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/13 01:12:55 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/15 15:10:39 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 		throw (AForm::NotSignedException());
 	}
 	std::cout << "Informs that " << this->_target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
-	std::cout << executor.getName() << " executed " << this->getName() << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &out, const PresidentialPardonForm &form)
