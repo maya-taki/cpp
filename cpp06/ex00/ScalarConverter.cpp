@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:05:42 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/15 20:44:35 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/20 00:38:37 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <stdint.h>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <cmath>
 #include <limits>
@@ -36,63 +37,75 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 	return (*this);
 }
 
+
 ScalarConverter::~ScalarConverter() {}
 
-//char
-//int
-//float
-//double
-
-static void		convert_double(double val)
+int			handle_type(const std::string literal)
 {
-	if (std::isinf(val))
-		std::cout << "double: " << (val > 0 ? "+" : "-") << "inf" << std::endl;
+
+}
+
+void		handle_double(const std::string literal)
+{
+}
+
+void		handle_int(const std::string literal)
+{
+}
+
+void		handle_float(const std::string literal)
+{
+}
+
+void		handle_char(const char c)
+{
+	std::cout << "char: ";
+	if (c < ' ' || c > '~')
+		std::cout << "non displayable" << std::endl;
 	else
-		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(val) << std::endl;
+		std::cout << "'" << c << "'" << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << "float: " << static_cast<int>(c) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<int>(c) << ".0" << std::endl;
+	
 }
 
-void		convert_int()
+void		impossible_conversion(double val)
 {
-
-}
-
-void		convert_float()
-{
-
-}
-
-void		convert_char()
-{
-
-}
-
-void		impossible_conversion()
-{
-
 }
 
 void		ScalarConverter::convert(const std::string str)
 {
-	char	*end;
 	double	val;
-
-	end = NULL;
-
-	if (str.empty())
-		return (impossible_conversion());
-	if (str.length() == 1 && !std::isdigit(str[0]))
-		val = static_cast<char>(str[0]);
-	else if (str.length() == 3 && str[0] == '\'' && str[2] == '\'')
-		val = static_cast<char>(str[1]);
-	else
+	int type = handle_type(str);
+	switch (type)
 	{
-		val = std::strtod(str.c_str(), &end);
-		if (*end != '\0' && !(*end) == 'f' && *(end + 1) == '\0')
-			return (impossible_conversion());
-	}
+		case 0 :
+		{
+			handle_char(str);
+			break;
+		}
+		case 1 :
+		{
+			handle_double(str);
+			break;
+		}
+		case 2 :
+		{
+			handle_int(str);
+			break;
+		}
+		case 3 :
+		{
+			handle_float(str);
+			break;
+		}
+		case 4 : 
+		{
+			handle_char(str.at(0));
+			break;
+		}
+		default :
 
-	convert_char(val);
-	convert_int(val);
-	convert_float(val);
-	convert_double(val);
+	}
 }
