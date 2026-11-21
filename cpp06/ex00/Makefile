@@ -1,4 +1,4 @@
-NAME = Bureaucrat
+NAME = ScalarConverter
 
 CXX = c++
 INCLUDE = -I includes
