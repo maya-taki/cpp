@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 12:58:44 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/20 20:34:01 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/24 13:34:48 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,5 @@ class ScalarConverter
 
 
 #endif
+
+void NewFunction();

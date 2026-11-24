@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:05:42 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/23 22:52:09 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/24 13:34:57 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ enum eType
 	DOUBLE,
 	INT,
 	PSEUDO,
-	IMPOSSIBLE,
-	FAIL
+	IMPOSSIBLE
 };
+
 
 ScalarConverter::ScalarConverter() {}
 
@@ -85,24 +85,25 @@ static eType	getType(const std::string &literal)
 	return (INT);
 }
 
-int		handle_double(const std::string literal)
+void		handle_double(const std::string literal)
 {
 	(void)literal;
-	return (DOUBLE);
+	std::cout << "double" << std::endl;
 }
 
-int		handle_int(const std::string &literal)
+void		handle_int(const std::string &literal)
 {
 	(void)literal;
-	return (INT);
+	std::cout << "int" << std::endl;
 }
-int		handle_float(const std::string &literal)
+void		handle_float(const std::string &literal)
 {
 	(void)literal;
-	return (FLOAT);
+	std::cout << "float" << std::endl;
 }
 
-int		handle_char(const char c)
+
+void		handle_char(const char c)
 {
 	std::cout << "char: ";
 	if (c < ' ' || c > '~')
@@ -112,13 +113,22 @@ int		handle_char(const char c)
 	std::cout << "int: " << static_cast<int>(c) << std::endl;
 	std::cout << "float: " << static_cast<int>(c) << ".0f" << std::endl;
 	std::cout << "double: " << static_cast<int>(c) << ".0" << std::endl;
-	return (CHAR);
 }
 
-int		impossible_conversion()
+void		handle_pseudo()
 {
-	std::cout << "Conversion impossible" << std::endl;
-	return (IMPOSSIBLE);
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: nanf" << std::endl;
+	std::cout << "double: nan" << std::endl;
+}
+
+void		handle_impossible()
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
 }
 
 void		ScalarConverter::convert(const std::string &str)
@@ -152,19 +162,20 @@ void		ScalarConverter::convert(const std::string &str)
 		}
 		case PSEUDO :
 		{
+			handle_pseudo();
 			std::cout << type << std::endl;
 			break ;
 		}
-		case FAIL :
+		case IMPOSSIBLE :
 		{
-			std::cout << "failed, something's wrong" << std::endl; //DELETE
-			break ;
+			handle_impossible();
+			std::cout << type << std::endl;
+			break ; 
 		}
 		default :
 		{
-			impossible_conversion();
-			std::cout << type << std::endl;
-			break;
+			std::cout << "unknown type" << std::endl;
+			break ;
 		}
 	}
 }
