@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 12:58:44 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/25 22:05:03 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/26 14:23:24 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <climits>
+#include <limits>
 #include <cctype>
 #include <iomanip>
 #include <ios>

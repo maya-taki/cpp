@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:05:42 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/25 22:57:49 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/26 16:26:00 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,14 @@ void		handle_double(const std::string &literal)
 	 else
 		std::cout << "char: impossible" << std::endl;
 
+	std::cout << std::fixed << std::setprecision(0);
+	if (std::numeric_limits<int>::min() > d || std::numeric_limits<int>::max() < d)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << i << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
 
-	//if (i > INT_MAX || i < INT_MIN)
-	//	std::cout << "int: impossible" << std::endl;
-	//else
-	//	std::cout << "int: " << i << std::endl;
-
-
+	
 	std::cout << "float: " << f << "f" << std::endl;
 	std::cout << "double: " << d << std::endl;
 }
@@ -121,17 +122,11 @@ void		handle_double(const std::string &literal)
 void		handle_int(const std::string &literal)
 {
 	int		i = std::atoi(literal.c_str());
+	double	i2 = std::atof(literal.c_str());
 	float	f = static_cast<float>(i);
 	char	c = static_cast<char>(i);
 	double	d = static_cast<double>(i);
-
-	//double	v = d;
-	//if (v < INT_MIN || v > INT_MAX)
-	//	std::cout << "int: impossible" << std::endl;
-	//else
-	//	std::cout << "int: " << v << std::endl;
 	
-
 	if (i >= 32 && i <= 126)
 		std::cout << "char: '" << c << "'" << std::endl;
 	else if ((i >= 0 && i <= 31) || i == 127)
@@ -139,19 +134,19 @@ void		handle_int(const std::string &literal)
 	 else
 		std::cout << "char: impossible" << std::endl;
 
-
-	//if (i > INT_MAX || i < INT_MIN)
-	//	std::cout << "int: impossible" << std::endl;
-	//else
-	//	std::cout << "int: " << i << std::endl;
-
+	std::cout << std::fixed << std::setprecision(0);
+	if (std::numeric_limits<int>::min() > i2 || std::numeric_limits<int>::max() < i2)
+		std::cout << "int: impossible" << std::endl;
+		else
+		std::cout << "int: " << i << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
 
 	std::cout << "float: " << f << "f" << std::endl;
 	std::cout << "double: " << d << std::endl;
 }
 void		handle_float(const std::string &literal)
 {
-	float	f = std::atof(literal.c_str());
+	float	f = static_cast<float>(std::atof(literal.c_str()));
 	char	c = static_cast<char>(f);
 	int		i = static_cast<int>(f);
 	double	d = static_cast<double>(f);
@@ -163,11 +158,12 @@ void		handle_float(const std::string &literal)
 		std::cout << "char: impossible" << std::endl;
 
 
-	//if (i > INT_MAX || i < INT_MIN)
-	//	std::cout << "int: impossible" << std::endl;
-	//else
-	//	std::cout << "int: " << i << std::endl;
-
+	std::cout << std::fixed << std::setprecision(0);
+	if (std::numeric_limits<int>::min() > d || std::numeric_limits<int>::max() < d)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << i << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
 
 	std::cout << "float: " << f << "f" << std::endl;
 	std::cout << "double: " << d << std::endl;
@@ -186,14 +182,7 @@ void		handle_char(const std::string &literal)
 		std::cout << "char: Non displayable" << std::endl;
 	 else
 		std::cout << "char: impossible" << std::endl;
-
-
-	//if (i > INT_MAX || i < INT_MIN)
-	//	std::cout << "int: impossible" << std::endl;
-	//else
-	//	std::cout << "int: " << i << std::endl;
-
-
+	std::cout << "int: " << i << std::endl;
 	std::cout << "float: " << f << ".0f" << std::endl;
 	std::cout << "double: " << d << ".0" << std::endl;
 }
@@ -232,31 +221,37 @@ void		ScalarConverter::convert(const std::string &str)
 		case CHAR :
 		{
 			handle_char(str);
+			std::cout << type << std::endl;
 			break ;
 		}
 		case FLOAT :
 		{
 			handle_float(str);
+			std::cout << type << std::endl;
 			break ;
 		}
 		case DOUBLE :
 		{
 			handle_double(str);
+			std::cout << type << std::endl;
 			break ;
 		}
 		case INT :
 		{
 			handle_int(str);
+			std::cout << type << std::endl;
 			break ;
 		}
 		case PSEUDO :
 		{
 			handle_pseudo(str);
+			std::cout << type << std::endl;
 			break ;
 		}
 		case IMPOSSIBLE :
 		{
 			handle_impossible();
+			std::cout << type << std::endl;
 			break ; 
 		}
 		default :
