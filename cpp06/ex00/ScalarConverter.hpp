@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 12:58:44 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/24 13:34:48 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/25 22:05:03 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 
-#include <stdint.h>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <cmath>
-#include <limits>
+#include <climits>
 #include <cctype>
 #include <iomanip>
 #include <ios>
 #include <cctype>
+#include <cstdlib>
 
 class ScalarConverter
 {

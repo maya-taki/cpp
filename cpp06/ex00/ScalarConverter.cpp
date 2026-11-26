@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:05:42 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/24 13:34:57 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/25 22:57:49 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ ScalarConverter::ScalarConverter(const ScalarConverter &other)
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 {
 	if (this != &other)
-		ScalarConverter::operator=(other);
+		return (*this);
 	return (*this);
 }
 
@@ -42,11 +42,15 @@ ScalarConverter::~ScalarConverter() {}
 
 static eType	getType(const std::string &literal)
 {
+	if (literal[0] == '\0')
+		return (IMPOSSIBLE);
 	if (literal == "+inff" || literal == "-inff" || literal == "nanf"
 		|| literal == "-inf" || literal == "+inf" || literal == "nan")
 			return (PSEUDO);
 	
-	if (literal.length() == 1 && !std::isdigit(literal[0]) && std::isprint(literal[0]))
+	if (literal.length() == 1
+		&& !std::isdigit(static_cast<unsigned char>(literal[0]))
+		&& std::isprint(static_cast<unsigned char>(literal[0])))
 		return (CHAR);
 
 	int	len = literal.length();
@@ -56,9 +60,7 @@ static eType	getType(const std::string &literal)
 
 	if (literal[i] == '-' || literal[i] == '+') {
 		i += 1;
-		std::cout << "index: " << i << std::endl;
 		if (i == len) {
-			std::cout << "error one" << std::endl;
 			return (IMPOSSIBLE);
 		}
 	}
@@ -67,10 +69,12 @@ static eType	getType(const std::string &literal)
 		if (literal[i] == '.')
 			dots += 1;
 		else if (i == len - 1 && literal[i] == 'f') {
-			if (dots <= 1 && has_digits)
+			if (dots == 1 && has_digits && !(literal[i] == 'f' && literal[i - 1] == '.'))
 				return (FLOAT);
 			else
+			{
 				return (IMPOSSIBLE);
+			}
 		}		
 		else if (!std::isdigit(literal[i])) {
 			return (IMPOSSIBLE);
@@ -79,48 +83,137 @@ static eType	getType(const std::string &literal)
 			return (DOUBLE);
 		has_digits = true;
 	}
-	if (dots > 1)
+	if (dots > 0)
+	{
+		if (has_digits && dots == 1)
+			return (DOUBLE);
 		return (IMPOSSIBLE);
+	}
 
 	return (INT);
 }
 
-void		handle_double(const std::string literal)
+void		handle_double(const std::string &literal)
 {
-	(void)literal;
-	std::cout << "double" << std::endl;
+	double	d = std::atof(literal.c_str());
+	float	f = static_cast<double>(d);
+	char	c = static_cast<char>(d);
+	int		i = static_cast<int>(d);
+	
+	if (i >= 32 && i <= 126)
+		std::cout << "char: '" << c << "'" << std::endl;
+	else if ((i >= 0 && i <= 31) || i == 127)
+		std::cout << "char: Non displayable" << std::endl;
+	 else
+		std::cout << "char: impossible" << std::endl;
+
+
+	//if (i > INT_MAX || i < INT_MIN)
+	//	std::cout << "int: impossible" << std::endl;
+	//else
+	//	std::cout << "int: " << i << std::endl;
+
+
+	std::cout << "float: " << f << "f" << std::endl;
+	std::cout << "double: " << d << std::endl;
 }
 
 void		handle_int(const std::string &literal)
 {
-	(void)literal;
-	std::cout << "int" << std::endl;
+	int		i = std::atoi(literal.c_str());
+	float	f = static_cast<float>(i);
+	char	c = static_cast<char>(i);
+	double	d = static_cast<double>(i);
+
+	//double	v = d;
+	//if (v < INT_MIN || v > INT_MAX)
+	//	std::cout << "int: impossible" << std::endl;
+	//else
+	//	std::cout << "int: " << v << std::endl;
+	
+
+	if (i >= 32 && i <= 126)
+		std::cout << "char: '" << c << "'" << std::endl;
+	else if ((i >= 0 && i <= 31) || i == 127)
+		std::cout << "char: Non displayable" << std::endl;
+	 else
+		std::cout << "char: impossible" << std::endl;
+
+
+	//if (i > INT_MAX || i < INT_MIN)
+	//	std::cout << "int: impossible" << std::endl;
+	//else
+	//	std::cout << "int: " << i << std::endl;
+
+
+	std::cout << "float: " << f << "f" << std::endl;
+	std::cout << "double: " << d << std::endl;
 }
 void		handle_float(const std::string &literal)
 {
-	(void)literal;
-	std::cout << "float" << std::endl;
+	float	f = std::atof(literal.c_str());
+	char	c = static_cast<char>(f);
+	int		i = static_cast<int>(f);
+	double	d = static_cast<double>(f);
+	if (i >= 32 && i <= 126)
+		std::cout << "char: '" << c << "'" << std::endl;
+	else if ((i >= 0 && i <= 31) || i == 127)
+		std::cout << "char: Non displayable" << std::endl;
+	 else
+		std::cout << "char: impossible" << std::endl;
+
+
+	//if (i > INT_MAX || i < INT_MIN)
+	//	std::cout << "int: impossible" << std::endl;
+	//else
+	//	std::cout << "int: " << i << std::endl;
+
+
+	std::cout << "float: " << f << "f" << std::endl;
+	std::cout << "double: " << d << std::endl;
 }
 
 
-void		handle_char(const char c)
+void		handle_char(const std::string &literal)
 {
-	std::cout << "char: ";
-	if (c < ' ' || c > '~')
-		std::cout << "non displayable" << std::endl;
-	else
-		std::cout << "'" << c << "'" << std::endl;
-	std::cout << "int: " << static_cast<int>(c) << std::endl;
-	std::cout << "float: " << static_cast<int>(c) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<int>(c) << ".0" << std::endl;
+	char	c = static_cast<char>(literal[0]);
+	int		i = static_cast<int>(c);
+	double	d = static_cast<double>(c);
+	float	f = static_cast<float>(c);
+	if (i >= 32 && i <= 126)
+		std::cout << "char: '" << c << "'" << std::endl;
+	else if ((i >= 0 && i <= 31) || i == 127)
+		std::cout << "char: Non displayable" << std::endl;
+	 else
+		std::cout << "char: impossible" << std::endl;
+
+
+	//if (i > INT_MAX || i < INT_MIN)
+	//	std::cout << "int: impossible" << std::endl;
+	//else
+	//	std::cout << "int: " << i << std::endl;
+
+
+	std::cout << "float: " << f << ".0f" << std::endl;
+	std::cout << "double: " << d << ".0" << std::endl;
 }
 
-void		handle_pseudo()
+void		handle_pseudo(const std::string &literal)
 {
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: nanf" << std::endl;
-	std::cout << "double: nan" << std::endl;
+	if (literal == "nan" || literal == "nanf") {
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
+	}
+	else if (literal == "+inf" || literal == "+inff") {
+		std::cout << "float: +inff" << std::endl;
+		std::cout << "double: +inf" << std::endl;
+	}
+	else if (literal == "-inf" || literal == "-inff") {
+		std::cout << "float: -inff" << std::endl;
+		std::cout << "double: -inf" << std::endl;
+	}
 }
 
 void		handle_impossible()
@@ -138,38 +231,32 @@ void		ScalarConverter::convert(const std::string &str)
 	{
 		case CHAR :
 		{
-			handle_char(str.at(0));
-			std::cout << type << std::endl;
+			handle_char(str);
 			break ;
 		}
 		case FLOAT :
 		{
 			handle_float(str);
-			std::cout << type << std::endl;
 			break ;
 		}
 		case DOUBLE :
 		{
 			handle_double(str);
-			std::cout << type << std::endl;
 			break ;
 		}
 		case INT :
 		{
 			handle_int(str);
-			std::cout << type << std::endl;
 			break ;
 		}
 		case PSEUDO :
 		{
-			handle_pseudo();
-			std::cout << type << std::endl;
+			handle_pseudo(str);
 			break ;
 		}
 		case IMPOSSIBLE :
 		{
 			handle_impossible();
-			std::cout << type << std::endl;
 			break ; 
 		}
 		default :
