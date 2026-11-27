@@ -6,6 +6,7 @@ FLAGS = -Wall -Wextra -Werror -fsanitize=address -std=c++98 $(INCLUDE)
 
 
 SRC =	ScalarConverter.cpp \
+		Handlers.cpp \
 		main.cpp
 
 OBJDIR = obj

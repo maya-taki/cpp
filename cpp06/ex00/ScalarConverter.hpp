@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 12:58:44 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/26 14:23:24 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/26 23:42:26 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 #include <ios>
 #include <cctype>
 #include <cstdlib>
+#include <cerrno>
+#include <cfloat>
+#include <cmath>
 
 class ScalarConverter
 {
@@ -35,7 +38,14 @@ class ScalarConverter
 		~ScalarConverter();
 };
 
+void		handle_double(const std::string &literal);
+void		handle_int(const std::string &literal);
+void		handle_float(const std::string &literal);
+void		handle_char(const std::string &literal);
+void		handle_pseudo(const std::string &literal);
+void		handle_impossible();
+void		printChar(double c);
+void		printInt(double i);
+
 
 #endif
-
-void NewFunction();
