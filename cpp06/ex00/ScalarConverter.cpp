@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:05:42 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/26 23:49:01 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/27 22:44:50 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static eType	getType(const std::string &literal)
 	for (; i < len; i++) {
 		if (literal[i] == '.')
 			dots += 1;
-		else if (i == len - 1 && literal[i] == 'f') {
-			if (dots == 1 && has_digits && !(literal[i] == 'f' && literal[i - 1] == '.'))
+		else if (i == len - 1 && (literal[i] == 'f' || literal[i] == 'F')) {
+			if (dots == 1 && has_digits)
 				return (FLOAT);
 			else
 			{
@@ -96,8 +96,6 @@ static eType	getType(const std::string &literal)
 void		ScalarConverter::convert(const std::string &str)
 {
 	int		type = getType(str);
-	// char 	*end;
-	// double	value = strtod(str.c_str(), &end);
 	switch (type)
 	{
 		case CHAR :
@@ -137,4 +135,3 @@ void		ScalarConverter::convert(const std::string &str)
 		}
 	}
 }
-

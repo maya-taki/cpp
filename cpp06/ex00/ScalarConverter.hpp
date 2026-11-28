@@ -6,7 +6,7 @@
 /*   By: mtakiyos <mtakiyos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 12:58:44 by mtakiyos          #+#    #+#             */
-/*   Updated: 2026/11/26 23:42:26 by mtakiyos         ###   ########.fr       */
+/*   Updated: 2026/11/28 02:27:21 by mtakiyos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <limits>
+#include <climits>
 #include <cctype>
+#include <limits>
 #include <iomanip>
 #include <ios>
 #include <cctype>
@@ -44,8 +45,10 @@ void		handle_float(const std::string &literal);
 void		handle_char(const std::string &literal);
 void		handle_pseudo(const std::string &literal);
 void		handle_impossible();
-void		printChar(double c);
-void		printInt(double i);
-
+int			get_precision(const std::string &literal);
+void		print_char(double c);
+void		print_int(double i);
+void		print_float(double f, int deci);
+void		print_double(double d, int deci);
 
 #endif
